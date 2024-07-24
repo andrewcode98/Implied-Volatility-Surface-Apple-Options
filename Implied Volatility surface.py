@@ -65,9 +65,9 @@ def model_function(k,t, params):
 
 def objective_function(params, k_data, t_data, y_data):
     predictions = model_function(k_data, t_data, params)
-    residuals = y_data - predictions
-    mse = np.mean(residuals ** 2)
-    return mse
+    residuals = np.abs(y_data - predictions) / y_data
+    mape = np.mean(residuals)   
+    return mape
 
 def symbolic_regression_function_Q1(M,T):
     return ((M - np.sqrt(M * (M / T))) * -0.26628348) + 0.24132709
